@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+passlib
+python-dotenv
+sqlalchemy
+pydantic
+mysql-connector-python
