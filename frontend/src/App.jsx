@@ -7,7 +7,7 @@ import Layout from './components/Layout';
 import Suporte from './pages/Suporte';
 import Configuration from './pages/Configuration';
 import Faturas from './pages/Faturas';          // Importando Faturas
-import CallCenter from './pages/CallCenter';    // Importando CallCenter
+import Softphone from './components/Softphone';    // Importando CallCenter
 import Chat from './pages/Chat';                // Importando Chat
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/suporte" element={<Suporte />} />
           <Route path="/configuration" element={<Configuration />} />
           <Route path="/faturas" element={<Faturas />} />        {/* Adicionando Faturas */}
-          <Route path="/callcenter" element={<CallCenter />} />  {/* Adicionando Call Center */}
+          <Route path="/softphone" element={<Softphone />} />  {/* Adicionando Call Center */}
           <Route path="/chat" element={<Chat />} />              {/* Adicionando Chat */}
         </Route>
       </Routes>

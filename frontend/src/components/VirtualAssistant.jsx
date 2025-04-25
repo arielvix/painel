@@ -7,8 +7,8 @@ const VirtualAssistant = () => {
       {/* Iframe carregando o link diretamente */}
       <iframe
         src="https://64aa22dee3164672b2e8f2a49a3f5709.elf.site"
-        width="350px"
-        height="450px"
+        width="300px"
+        height="380px"
         style={{
           border: 'none',
           borderRadius: '10px',

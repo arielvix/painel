@@ -7,11 +7,14 @@ import SettingsIcon from '@mui/icons-material/Settings';  // Ícone minimalista
 import ReceiptIcon from '@mui/icons-material/Receipt';  // Ícone minimalista
 import CallIcon from '@mui/icons-material/Phone';  // Ícone minimalista
 import ChatIcon from '@mui/icons-material/Chat';  // Ícone minimalista
-
+import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk'; // ou outro ícone que preferir
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import VirtualAssistant from './VirtualAssistant'; // Importando o assistente virtual
 import Profile from './Profile';  // Importe do componente Profile
+import Softphone from './Softphone'; // Importando o assistente virtual
+
+
 const Layout = () => {
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
@@ -22,16 +25,19 @@ const Layout = () => {
 
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
+  const [softphoneOpen, setSoftphoneOpen] = useState(false);
+
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
   {/* Sidebar (Drawer) */}
   <Drawer
         sx={{
-          width: 58,  // Reduzir a largura da sidebar
+          width: 75,  // Reduzir a largura da sidebar
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: 58,  // Ajusta a largura para a sidebar
+            width: 75,  // Ajusta a largura para a sidebar
             backgroundColor: '#f4f4f4',  // Fundo claro da sidebar
             color: '#000',  // Cor dos ícones e texto
             boxSizing: 'border-box',
@@ -61,7 +67,7 @@ const Layout = () => {
     transition: 'transform 0.3s ease-in-out',
     '&:hover': { 
       transform: 'scale(1.2)', 
-      color: 'rgb(13, 13, 13)' // Cor mais intensa no hover
+      color: 'rgb(7, 177, 250)' // Cor mais intensa no hover
     }
   }}/>
               </IconButton>
@@ -78,107 +84,13 @@ const Layout = () => {
                 onClick={() => handleNavigation('/chat')}
               >
                 <ChatIcon sx={{
-    color: 'rgba(29, 233, 230, 0.8)', // Cor com alpha (transparência) usando RGBA
-    fontSize: '35px',
-    padding: '6px',
-    transition: 'transform 0.3s ease-in-out',
-    '&:hover': { 
-      transform: 'scale(1.2)', 
-      color: 'rgb(13, 13, 13)' // Cor mais intensa no hover
-    }
-  }}/>
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Ir para Callcenter">
-              <IconButton 
-                sx={{
-                  color: '#fff',
-                  fontSize: '16px',
-                  padding: '6px',
-                  transition: 'transform 0.3s ease-in-out',
-                  '&:hover': { transform: 'scale(1.2)' }
-                }}
-                onClick={() => handleNavigation('/callcenter')}
-              >
-                <CallIcon sx={{
     color: 'rgba(225, 106, 8, 0.8)', // Cor com alpha (transparência) usando RGBA
     fontSize: '35px',
     padding: '6px',
     transition: 'transform 0.3s ease-in-out',
     '&:hover': { 
       transform: 'scale(1.2)', 
-      color: 'rgb(13, 13, 13)' // Cor mais intensa no hover
-    }
-  }}/>
-              </IconButton>
-            </Tooltip>
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'column', position:'absolute', alignItems:  'center', paddingTop: '0px' }}>        
-            
-                                  </Box>
-      </Drawer>
-
-
-      {/* AppBar com estilo mais clean e profissional */}
-      <AppBar 
-  position="fixed" 
-  sx={{
-    zIndex: 1200, 
-    backgroundColor: 'transparent', // Deixando a AppBar transparente
-    height: '60px',  // Mantém a altura ajustada
-    boxShadow: 'none', // Remover a sombra para um visual mais limpo (ou ajustar se preferir)
-  }}
-  >
-        <Toolbar sx={{ justifyContent: 'space-between', height: '80%' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton onClick={() => navigate('/home')}>
-              <img
-                src={darkMode ? '/logo.png' : '/logodark.png'}
-                alt="Logo"
-                style={{
-                  height: '26px', // Logo principal com tamanho reduzido
-                  width: 'auto',
-                  marginLeft: '-30px', // Desloca o logo para a direita (ajuste conforme necessário)
-                  marginTop: '-20px',  // Desloca o logo para baixo
-                }}
-              />
-            </IconButton>
-          </Box>
-          {/* Grupo de ícones separados */}
-          <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 2 }}>
-          <Tooltip title="Mudar para modo escuro/claro">
-          <IconButton 
-                sx={{
-                  color: '#fff',
-                  fontSize: '15px',
-                  padding: '6px',
-                  transition: 'transform 0.3s ease-in-out',  // Efeito de flutuação nos ícones
-                  '&:hover': { transform: 'scale(1.2)' }  // Efeito de flutuação no hover
-                }}
-                onClick={toggleDarkMode}
-              >
-                {darkMode ? '🌜' : '🌞'}
-              </IconButton>
-              </Tooltip>
-            <Tooltip title="Ir para Faturas">
-              <IconButton 
-                sx={{
-                  color: '#fff',
-                  fontSize: '16px',
-                  padding: '6px',
-                  transition: 'transform 0.3s ease-in-out',
-                  '&:hover': { transform: 'scale(1.2)' }
-                }}
-                onClick={() => handleNavigation('/faturas')}
-              >
-                <ReceiptIcon sx={{
-    color: 'rgba(255, 242, 0, 0.8)', // Cor com alpha (transparência) usando RGBA
-    fontSize: '35px',
-    padding: '6px',
-    transition: 'transform 0.3s ease-in-out',
-    '&:hover': { 
-      transform: 'scale(1.2)', 
-      color: 'rgb(52, 253, 2)' // Cor mais intensa no hover
+      color: 'rgb(7, 177, 250)' // Cor mais intensa no hover
     }
   }}/>
               </IconButton>
@@ -195,7 +107,30 @@ const Layout = () => {
                 onClick={() => handleNavigation('/suporte')}
               >
                 <SupportIcon sx={{
-    color: 'rgb(255, 255, 0)', // Cor com alpha (transparência) usando RGBA
+    color: 'rgba(225, 106, 8, 0.8)', // Cor com alpha (transparência) usando RGBA
+    fontSize: '35px',
+    padding: '6px',
+    transition: 'transform 0.3s ease-in-out',
+    '&:hover': { 
+      transform: 'scale(1.2)', 
+      color: 'rgb(7, 177, 250)' // Cor mais intensa no hover
+    }
+  }}/>
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Ir para Faturas">
+              <IconButton 
+                sx={{
+                  color: '#fff',
+                  fontSize: '16px',
+                  padding: '6px',
+                  transition: 'transform 0.3s ease-in-out',
+                  '&:hover': { transform: 'scale(1.2)' }
+                }}
+                onClick={() => handleNavigation('/faturas')}
+              >
+                <ReceiptIcon sx={{
+    color: 'rgba(225, 106, 8, 0.8)', // Cor com alpha (transparência) usando RGBA
     fontSize: '35px',
     padding: '6px',
     transition: 'transform 0.3s ease-in-out',
@@ -223,17 +158,88 @@ const Layout = () => {
                 onClick={() => handleNavigation('/configuration')}
               >
                 <SettingsIcon sx={{
-    color: 'rgba(19, 18, 18, 0.8)', // Cor com alpha (transparência) usando RGBA
+    color: 'rgba(225, 106, 8, 0.8)', // Cor com alpha (transparência) usando RGBA
     fontSize: '35px',
     padding: '6px',
     transition: 'transform 0.3s ease-in-out',
     '&:hover': { 
       transform: 'scale(1.2)', 
-      color: 'rgb(234, 10, 156)' // Cor mais intensa no hover
+      color: 'rgb(7, 177, 250)' // Cor mais intensa no hover
     }
   }}/>
               </IconButton>
             </Tooltip>
+          </Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', position:'absolute', alignItems:  'center', paddingTop: '0px' }}>        
+          </Box>
+      </Drawer>
+
+
+      {/* AppBar com estilo mais clean e profissional */}
+      <AppBar 
+  position="fixed" 
+  sx={{
+    zIndex: 1200, 
+    backgroundColor: 'transparent', // Deixando a AppBar transparente
+    height: '60px',  // Mantém a altura ajustada
+    boxShadow: 'none', // Remover a sombra para um visual mais limpo (ou ajustar se preferir)
+  }}
+  >
+        <Toolbar sx={{ justifyContent: 'space-between', height: '80%' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton onClick={() => navigate('/home')}>
+              <img
+                src={darkMode ? '/logo.png' : '/logodark.png'}
+                alt="Logo"
+                style={{
+                  height: '30px', // Logo principal com tamanho reduzido
+                  width: 'auto',
+                  marginLeft: '-30px', // Desloca o logo para a direita (ajuste conforme necessário)
+                  marginTop: '-20px',  // Desloca o logo para baixo
+                }}
+              />
+            </IconButton>
+          </Box>
+
+          {/* Grupo de ícones separados */}
+          <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 2 }}>
+          <Tooltip title="Mudar para modo escuro/claro">
+          <IconButton 
+                sx={{
+                  color: '#fff',
+                  fontSize: '15px',
+                  padding: '6px',
+                  transition: 'transform 0.3s ease-in-out',  // Efeito de flutuação nos ícones
+                  '&:hover': { transform: 'scale(1.2)' }  // Efeito de flutuação no hover
+                }}
+                onClick={toggleDarkMode}
+              >
+                {darkMode ? '🌜' : '🌞'}
+              </IconButton>
+              </Tooltip>
+            <Tooltip title="Abrir Discador">
+  <IconButton
+    sx={{
+      color: '#fff',
+      fontSize: '16px',
+      padding: '6px',
+      transition: 'transform 0.3s ease-in-out',
+      '&:hover': { transform: 'scale(1.2)' }
+    }}
+    onClick={() => setSoftphoneOpen(!softphoneOpen)}
+  >
+    <PhoneInTalkIcon sx={{
+      color: 'rgba(225, 106, 8, 0.8)',
+      fontSize: '35px',
+      padding: '6px',
+      transition: 'transform 0.3s ease-in-out',
+      '&:hover': { 
+        transform: 'scale(1.2)', 
+        color: 'rgb(13, 13, 13)' 
+      }
+    }} />
+  </IconButton>
+</Tooltip>
             <Tooltip title="Sair">
               <IconButton 
                 sx={{
@@ -298,6 +304,27 @@ const Layout = () => {
         </Container>
       </Box>
       <VirtualAssistant />
+      {softphoneOpen && (
+ <Box
+ sx={{
+   position: 'fixed',
+   top: '45px',         // Posição vertical relativa à AppBar
+   right: 'calc(60px + 2vw)',  // Alinha com o botão na AppBar + espaço de margem
+   zIndex: 2000,
+   animation: 'slideUp 0.4s ease-out',
+   '@keyframes slideUp': {
+     from: { opacity: 0, transform: 'translateY(20px)' },
+     to: { opacity: 1, transform: 'translateY(0)' },
+   },
+ }}
+>
+ <Softphone />
+</Box>
+
+
+
+)}
+
     </Box>
   );
 };
